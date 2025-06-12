@@ -1,0 +1,124 @@
+import java.util.*;
+
+class array
+{
+    public static void main(String[] args) {
+        // Declare and initialize an array of integers
+        int[] num = new int[5];
+        //Take imput and store in array
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter a number");
+        for(int i = 0; i < num.length; i++) {
+            num[i] = in.nextInt();
+        }
+        // Print the elements of the array
+        System.out.println("The numbers you entered are:");
+        for(int a: num) {
+            System.out.println(a+" ");
+        }
+        // Print the length of the array
+        System.out.println("The length of the array:"+num.length);
+        // Access an element at a specific index and print its value
+        System.out.println("Input the index you want to access:");
+        int index = in.nextInt();
+        for(int i=0;i<num.length;i++) {
+            if(i == index) {
+                System.out.println("The value at index " + index + " is: " + num[i]);
+            }
+        }
+        //sum of all elements in the array
+        int sum = 0;
+        for(int i = 0; i < num.length; i++) {
+            sum += num[i];
+        }   
+        System.out.println("The sum of all elements in the array is: " + sum);
+
+        // find average of all elements in the array
+        double average = (double) sum / num.length;
+        System.out.println("The average of all elements in the array is: " + average);
+        // find the maximum element in the array
+        int max = num[0];
+        for(int i = 1; i < num.length; i++) {
+            if(num[i] > max) {
+                max = num[i];
+            }
+        }
+        System.out.println("The maximum element in the array is: " + max);
+        // find the minimum element in the array        
+        int min = num[0];
+        for(int i = 1; i < num.length; i++) {
+            if(num[i] < min) {
+                min = num[i];
+            }
+        }
+        System.out.println("The minimum element in the array is: " + min);
+        //count the number of even and odd elements in the array
+        int evenCount = 0;      
+        int oddCount = 0;
+        for(int i = 0; i < num.length; i++) {
+            if(num[i] % 2 == 0) {
+                evenCount++;
+            } else {
+                oddCount++;
+            }
+        }
+        System.out.println("The number of even elements in the array is: " + evenCount);
+        System.out.println("The number of odd elements in the array is: " + oddCount);
+        //reverse the array
+        System.out.println("The reversed array is:");
+        for(int i = num.length - 1; i >= 0; i--) {
+            System.out.print(num[i] + " ");
+        }
+        System.out.println();
+        //copy one array to another
+        int[] copyArray = new int[num.length];
+        for(int i = 0; i < num.length; i++) {
+            copyArray[i] = num[i];
+        }
+        System.out.println("The copied array is:");
+        for(int a: copyArray) {
+            System.out.print(a + " ");
+        }
+        System.out.println();
+        //search for an element in the array(linear search)
+        System.out.println("Enter the element you want to search for:");
+        int searchElement = in.nextInt();
+        boolean found = false;
+        for(int i = 0; i < num.length; i++) {
+            if(num[i] == searchElement) {
+                System.out.println("Element " + searchElement + " found at index " + i);
+                found = true;
+                break;
+            }
+        }
+        if(!found) {
+            System.out.println("Element " + searchElement + " not found in the array.");
+        }   
+        //check if array contains a specific value
+        System.out.println("Enter the value you want to check if it exists in the array:");
+        int checkValue = in.nextInt();
+        boolean exists = false;
+        for(int i = 0; i < num.length; i++) {
+            if(num[i] == checkValue) {
+                exists = true;
+                break;
+            }
+        }
+        if(exists) {
+            System.out.println("The value " + checkValue + " exists in the array.");
+        } else {
+            System.out.println("The value " + checkValue + " does not exist in the array.");
+        }
+        //count occurrences of a specific value in the array
+        System.out.println("Enter the value you want to count occurrences of:");
+        int countValue = in.nextInt();
+        int c = 0;
+        for(int i = 0; i < num.length; i++) {
+            if(num[i] == countValue) {
+                c++;
+            }
+        }
+        System.out.println("The value " + countValue + " occurs " + c + " times in the array.");
+        in.close();
+    }
+}
