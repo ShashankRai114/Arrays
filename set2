@@ -1,0 +1,285 @@
+import java.util.*;
+public class array2 
+{
+    @SuppressWarnings("ManualArrayToCollectionCopy")
+    public static void main(String[] args) {
+        {
+            Scanner in = new Scanner(System.in);
+            System.out.println("Enter size of array");
+            int n=in.nextInt();
+            int a[]=new int[n];
+            System.out.println("Enter elements of array");
+            for(int i=0;i<n;i++)
+            {
+                a[i]=in.nextInt();
+            }
+            // Find the second largest element in the array
+            System.out.println("The second largest element in the array is: ");
+            int largest=Integer.MIN_VALUE;
+            int secondlargest=Integer.MIN_VALUE;
+            for(int i=0;i<n;i++)
+            {
+                    if(a[i]>largest)
+                    {
+                        secondlargest=largest;
+                        largest=a[i];
+                    }
+                    else if(a[i]>secondlargest && a[i]!=largest)
+                    {
+                        secondlargest=a[i];
+                    }
+            }
+            if(secondlargest==Integer.MIN_VALUE)
+            {
+                System.out.println("There is no second largest element,check maybe all the elements are same");
+            }
+            else
+            {
+                System.out.println("Second Largest Element:"+ secondlargest);
+            }
+
+            // Find the second smallest element in the array
+            System.out.println("The second smallest element in the array is: ");
+            int smallest=Integer.MAX_VALUE;
+            int secondsmallest=Integer.MAX_VALUE;
+            for(int i=0;i<n;i++)
+            {
+                    if(a[i]<smallest)
+                    {
+                        secondsmallest=smallest;
+                        smallest=a[i];
+                    }
+                    else if(a[i]<secondsmallest && a[i]!=smallest)
+                    {
+                        secondsmallest=a[i];
+                    }
+            }
+            if(secondsmallest==Integer.MAX_VALUE)
+            {
+                System.out.println("There is no second smallest element,check maybe all the elements are same");
+            }
+            else
+            {
+                System.out.println("Second Smallest Element:"+ secondsmallest);
+            }
+            //Sorting array in ascending order
+            for( int i=0;i<n-1;i++)
+            {
+                for(int j=0;j<n-i-1;j++)
+                {
+                    if(a[j]>a[j+1])
+                    {
+                        int temp=a[j];
+                        a[j]=a[j+1];
+                        a[j+1]=temp;
+                    }
+                }
+            }
+            System.out.println("Sorted array in ascending order:");
+            for (int i=0;i<n;i++)
+            {
+                System.out.println(" "+a[i]);
+            }
+            //Sorting array in descending order
+            for( int i=0;i<n-1;i++)
+            {
+                for(int j=0;j<n-i-1;j++)
+                {
+                    if(a[j] < a[j+1])
+                    {
+                        int temp=a[j];
+                        a[j]=a[j+1];
+                        a[j+1]=temp;
+                    }
+                }
+            }
+            System.out.println("Sorted array in descending order:");
+            for (int i=0;i<n;i++)
+            {
+                System.out.println(" "+a[i]);
+            }
+            //removing duplicates from the array
+            int temp[]=new int[n];
+            int j=0;
+            for(int i=0;i<n;i++)
+            {
+                boolean isDuplicate = false;
+                for(int k=0;k<j;k++)
+                {
+                    if(a[i]==temp[k])
+                    {
+                        isDuplicate=true;
+                        break;
+                    }
+                }
+                if(!isDuplicate)
+                {
+                    temp[j++]=a[i];
+                }
+            }
+            System.err.println("Array after removing duplicated elements:");
+            for(int i=0;i<j;i++)
+            {
+                System.out.println(temp[i]+" ");
+            }
+            //Merge two arrays
+            System.out.println("Enter size of new array:");
+            int nn=in.nextInt();
+            int b[]=new int[nn];
+            System.out.println("Enter Elements in new array:");
+            for(int i=0;i<nn;i++)
+            {
+                b[i]=in.nextInt();
+            }
+            int mergedarray[]=new int[n+nn];
+            for(int i=0;i<n;i++)
+            {
+                mergedarray[i]=a[i];
+            }
+            for(int i=0;i<nn;i++)
+            {
+                mergedarray[n+i]=b[i];
+            }
+            
+            for(int num:mergedarray)
+            {
+                System.out.print(num+" ");
+            }
+            System.out.println(" ");
+            
+             boolean isEqual=true;
+            if(a.length != b.length)
+            {
+            isEqual=false;  
+              }
+       else {
+            for (int i = 0; i < a.length; i++) {
+                if (a[i] != b[i]) {
+                    isEqual = false;
+                    break;
+                }
+            }
+        }
+            if (isEqual)
+            {
+            System.out.println("Arrays a and b are equal.");
+            }
+             else
+            {
+                System.out.println("Arrays a and b are not equal.");
+            }
+            // Left rotate the array
+            System.out.println("Enter number of positions to left rotate the array:");
+            int d = in.nextInt();
+            d = d % n; 
+            int[] leftRotatedArray = new int[n];
+            for (int i = 0; i < n; i++) {
+                leftRotatedArray[i] = a[(i + d) % n];
+            }
+            System.out.println("Array after left rotation:");
+            for (int num : leftRotatedArray) {
+                System.out.print(num + " ");
+            }
+
+            System.out.println();
+            // Right rotate the array
+            System.out.println("Enter number of positions to right rotate the array:");
+            d = in.nextInt();
+            d = d % n;
+            int[] rightRotatedArray = new int[n];
+            for (int i = 0; i < n; i++) {
+                rightRotatedArray[i] = a[(i - d + n) % n];
+            }
+            System.out.println("Array after right rotation:");
+            for (int num : rightRotatedArray) {
+                System.out.print(num + " ");
+            }       
+            System.out.println();
+            //print frequency of all elements in the array
+            System.out.println("Frequency of elements in the array:");
+            Map<Integer, Integer> frequencyMap = new HashMap<>();
+            for (int num : a) {
+                frequencyMap.put(num, frequencyMap.getOrDefault(num, 0) + 1);
+            }
+            for (Map.Entry<Integer, Integer> entry : frequencyMap.entrySet()) {
+                System.out.println("Element: " + entry.getKey() + ", Frequency: " + entry.getValue());
+            }
+            // Find the elements of even and odd indexes
+            System.out.println("Elements at even indexes:");
+            for (int i = 0; i < n; i += 2) {
+                System.out.print(a[i] + " ");
+            }
+            System.out.println();
+            System.out.println("Elements at odd indexes:");
+            for (int i = 1; i < n; i += 2) {
+                System.out.print(a[i] + " ");
+            }
+            System.out.println();
+            //Swap first and last elements of the array
+            if (n > 1) {
+                int swapTemp = a[0];
+                a[0] = a[n - 1];
+                a[n - 1] = swapTemp;
+                System.out.println("Array after swapping first and last elements:");
+                for (int num : a) {
+                    System.out.print(num + " ");
+                }
+            } else {
+                System.out.println("Array has only one element, no swap needed.");
+            }
+            //seperate even and odd elements into two different arrays
+            int evenCount = 0;
+            int oddCount = 0;
+            for (int i = 0; i < n; i++) {
+                if (a[i] % 2 == 0) {
+                    evenCount++;
+                } else {
+                    oddCount++;
+                }
+            }
+            int[] evenArray = new int[evenCount];
+            int[] oddArray = new int[oddCount];
+            int evenIndex = 0;
+            int oddIndex = 0;
+            for (int i = 0; i < n; i++) {
+                if (a[i] % 2 == 0) {
+                    evenArray[evenIndex++] = a[i];
+                } else {
+                    oddArray[oddIndex++] = a[i];
+                }
+            }
+            System.out.println("Even elements in the array:");
+            for (int num : evenArray) {
+                System.out.print(num + " ");
+            }
+            System.out.println();
+            System.out.println("Odd elements in the array:");
+            for (int num : oddArray) {
+                System.out.print(num + " ");
+            }
+            System.out.println();
+            //find missing number from 1 to n in the array
+            System.out.println("Enter the range of numbers (1 to n) to find the missing number:");  
+            int range = in.nextInt();
+            boolean[] present = new boolean[range + 1]; 
+            for (int i = 0; i < n; i++) {
+                if (a[i] >= 1 && a[i] <= range) {
+                    present[a[i]] = true;
+                }
+            }
+            System.out.println("Missing numbers in the range 1 to " + range + ":");
+            boolean foundMissing = false;
+            for (int i = 1; i <= range; i++) {
+                if (!present[i]) {
+                    System.out.print(i + " ");
+                    foundMissing = true;
+                }
+            }
+            if (!foundMissing) {
+                System.out.println("No missing numbers in the range 1 to " + range);
+            }
+            System.out.println();
+
+        }
+    }    
+}
